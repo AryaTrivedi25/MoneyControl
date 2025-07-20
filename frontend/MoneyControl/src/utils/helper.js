@@ -13,10 +13,25 @@ export const addThousandsSeparator = (num) => {
 };
 
 export const prepareExpenseBarChartData = (data = []) => {
-  const chartData = data.map((item) => ({
-    category: item?.category,
-    amount: item?.amount,
-  }));
+  const grouped = {};
 
-  return chartData;
+  data.forEach((item) => {
+    const cat = item?.category || "Other";
+    const amount = Number(item?.amount || 0);
+    if (!grouped[cat]) {
+      grouped[cat] = amount;
+    } else {
+      grouped[cat] += amount;
+    }
+  });
+
+  return Object.entries(grouped).map(([category, amount]) => ({ category, amount }));
 };
+
+export const prepareIncomePieChartData = (data = []) => {
+  return data.map((item) => ({
+    name: item?.source || "Unknown",
+    amount: Number(item?.amount || 0),
+  }));
+};
+

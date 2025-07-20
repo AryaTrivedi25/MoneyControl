@@ -1,15 +1,15 @@
 // import React from 'react';
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  Cell,
-} from "recharts";
+// import {
+//   BarChart,
+//   Bar,
+//   XAxis,
+//   YAxis,
+//   CartesianGrid,
+//   Tooltip,
+//   Legend,
+//   ResponsiveContainer,
+//   Cell,
+// } from "recharts";
 // // import CustomTooltip from './CustomTooltip';
 
 // const CustomBarChart = ({data}) => {
@@ -54,11 +54,13 @@ import {
 
 // export default CustomBarChart;
 
+import React from 'react';
+import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, Cell } from 'recharts';
+
 const CustomBarChart = ({ data }) => {
-  // Clean the data to ensure correct types
   const cleanedData = data.map(d => ({
     ...d,
-    amount: Number(d.amount)  // convert to number
+    amount: Number(d.amount)
   }));
 
   const getBarColor = (index) => index % 2 === 0 ? "#875cf5" : "#cfbefb";
@@ -84,7 +86,7 @@ const CustomBarChart = ({ data }) => {
       <ResponsiveContainer width='100%' height='100%'>
         <BarChart data={cleanedData}>
           <CartesianGrid stroke="none" />
-          <XAxis dataKey="month" tick={{ fontSize: 12, fill: "#555" }} stroke='none' />
+          <XAxis dataKey="category" tick={{ fontSize: 12, fill: "#555" }} stroke='none' />
           <YAxis tick={{ fontSize: 12, fill: '#555' }} stroke='none' domain={[0, 'dataMax + 500']} />
           <Tooltip content={<CustomTooltip />} />
           <Bar dataKey="amount" radius={[10, 10, 0, 0]}>

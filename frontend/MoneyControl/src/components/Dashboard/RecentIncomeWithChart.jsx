@@ -1,42 +1,93 @@
-import React, { useEffect, useState } from 'react'
+// import React, { useEffect, useState } from 'react';
+// import CustomPieChart from '../Charts/CustomPieChart';
 
-const COLORS = ["#875CF5", "#FA2C37", "#FF6900", "#4f39f6"];
+// const COLORS = [
+//   '#8884d8',
+//   '#82ca9d',
+//   '#ffc658',
+//   '#ff8042',
+//   '#8dd1e1',
+//   '#a4de6c',
+//   '#d0ed57',
+//   '#ffc0cb',
+// ];
+
+// const RecentIncomeWithChart = ({ data, totalIncome }) => {
+//   const [chartData, setChartData] = useState([]);
+
+//   const prepareChartData = () => {
+//     const dataArr = (data || []).map((item) => ({
+//       name: item?.source || 'Unknown',  
+//       amount: Number(item?.amount),
+//     }));
+
+//     setChartData(dataArr);
+//   };
+
+//   useEffect(() => {
+//     prepareChartData();
+//   }, [data]);
+
+//   return (
+//     <div className="p-4 bg-white rounded-2xl shadow-md">
+//       <h2 className="text-lg font-semibold mb-4">Recent Income (Chart View)</h2>
+//       {chartData.length === 0 ? (
+//         <p className="text-gray-500 text-sm text-center">No income data to display.</p>
+//       ) : (
+//         <CustomPieChart
+//           data={chartData}
+//           label="Total Income"
+//           totalAmount={`₹${totalIncome}`}
+//           showTextAnchor
+//           colors={COLORS}
+//         />
+//       )}
+//     </div>
+//   );
+// };
+
+// export default RecentIncomeWithChart;
+
+import React, { useEffect, useState } from 'react';
 import CustomPieChart from '../Charts/CustomPieChart';
+import { prepareIncomePieChartData } from '../../utils/helper'; // import from utility
 
-const RecentIncomeWithChart = ({data, totalIncome}) => {
-  console.log(data);
+const COLORS = [
+  '#8884d8',
+  '#82ca9d',
+  '#ffc658',
+  '#ff8042',
+  '#8dd1e1',
+  '#a4de6c',
+  '#d0ed57',
+  '#ffc0cb',
+];
+
+const RecentIncomeWithChart = ({ data, totalIncome }) => {
   const [chartData, setChartData] = useState([]);
-  const prepareChartData = () => {
-    const dataArr = data?.map((item) => ({
-      name: item?.source,
-      amount: item?.amount,
-    }));
-
-    setChartData(dataArr);
-  };
 
   useEffect(() => {
-    prepareChartData();
-
-    return ()=> {};
+    const result = prepareIncomePieChartData(data);
+    // console.log("Income pie chart data =>", result); // for debugging
+    setChartData(result);
   }, [data]);
 
-  // console.log(chartData);
   return (
-    <div className='card'>
-      <div className='flex items-center justify-between'>
-        <h5 className='text-lg'>Last 60 Days Income</h5>
-      </div>
-
-      <CustomPieChart 
-        data={chartData}
-        label="Total Income"
-        totalAmount={`₹${totalIncome}`}
-        showTextAnchor
-        colors={COLORS}
-      />
+    <div className="p-4 bg-white rounded-2xl shadow-md">
+      <h2 className="text-lg font-semibold mb-4">Recent Income (Chart View)</h2>
+      {chartData.length === 0 ? (
+        <p className="text-gray-500 text-sm text-center">No income data to display.</p>
+      ) : (
+        <CustomPieChart
+          data={chartData}
+          label="Total Income"
+          totalAmount={`₹${totalIncome}`}
+          showTextAnchor
+          colors={COLORS}
+        />
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default RecentIncomeWithChart;
