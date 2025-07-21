@@ -19,5 +19,5 @@ A simple full-stack application to manage and track your income and expenses.
 ## Getting Started
 
 Clone the repository  
-   `git clone https://github.com/AryaTrivedi25/expense-tracker.git`
+   `git clone https://github.com/AryaTrivedi25/MoneyControl.git`
 
