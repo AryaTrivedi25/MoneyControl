@@ -18,17 +18,6 @@ A simple full-stack application to manage and track your income and expenses.
 
 ## Getting Started
 
-1. Clone the repository  
-   `git clone https://github.com/your-username/expense-tracker.git`
+Clone the repository  
+   `git clone https://github.com/AryaTrivedi25/expense-tracker.git`
 
-2. Install dependencies  
-   Run `npm install` in both `client/` and `server/` directories
-
-3. Start the application  
-   In the `server/` folder: `npm run dev`  
-   In the `client/` folder: `npm start`
-
-## Folder Structure
-
-- `client/` – React frontend  
-- `server/` – Express backend
