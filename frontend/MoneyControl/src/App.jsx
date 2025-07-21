@@ -9,10 +9,12 @@ import{
 
 import Login from "./pages/Auth/login";
 import SignUp from "./pages/Auth/SignUp";
-import Home from "./pages/Dashboard/home";
+import Home from "./pages/Dashboard/Home";
 import Income from "./pages/Dashboard/Income";
 import Expense from "./pages/Dashboard/Expense";
 import UserProvider from "./context/UserContext";
+import {Toaster} from "react-hot-toast";
+import UploadReceipt from "./pages/Dashboard/UploadReceipt";
 
 
 const App = () => {
@@ -27,9 +29,24 @@ const App = () => {
             <Route path="/dashboard" exact element={<Home />} />
             <Route path="/income" exact element={<Income/>} />
             <Route path="/expense" exact element={<Expense />} />
+
+            <Route
+              path="/expense/upload-receipt"
+              exact
+              element={<UploadReceipt />}
+            />
           </Routes>
         </Router>
       </div>
+
+      <Toaster 
+        toastOptions={{
+          className: "",
+          style: {
+            fontStyle: '13px'
+          },
+        }}
+      />
     </UserProvider>
   );
 }

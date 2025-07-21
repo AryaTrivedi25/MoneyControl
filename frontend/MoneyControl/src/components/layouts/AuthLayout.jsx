@@ -26,9 +26,9 @@ const AuthLayout = ({children}) => {
           </StatsInfoCard>
         </div>
 
-        <img src={CARD_2}
+        {/* <img src={CARD_2}
         className='w64 lg:w-[90%] absolute bottom-10 shadow-lg shadow-blue-500/15'
-        alt="" />
+        alt="" /> */}
        </div>
     </div>
   )

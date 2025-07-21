@@ -1,3 +1,5 @@
+import  moment from "moment";
+
 export const validateEmail = (email) => {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return re.test(String(email).toLowerCase());
@@ -35,3 +37,38 @@ export const prepareIncomePieChartData = (data = []) => {
   }));
 };
 
+// export const prepareIncomeBarChartData = (data = []) => {
+//   const sortedData = [...data].sort((a,b) => new Date(a.date) - new Date(b.date));
+
+//   const chartData = sortedData.map((item) => ({
+//     month: moment(item?.date).format("Do MMM"),
+//     amount: item?.amount,
+//     source: item?.source,
+//   }));
+
+//   return chartData;
+// };
+
+// utils/helper.js
+
+export const prepareIncomeBarChartData = (data = []) => {
+  const sortedData = [...data].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+  const chartData = sortedData.map((item) => ({
+    category: moment(item?.date).format("DD MMM"), // ✅ match key for XAxis
+    amount: item?.amount,
+  }));
+
+  return chartData;
+};
+
+export const pareExpenseBarChartData = (data = []) => {
+  const sortedData = [...data].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+  const chartData = sortedData.map((item) => ({
+    category: moment(item?.date).format("DD MMM"), // ✅ match key for XAxis
+    amount: item?.amount,
+  }));
+
+  return chartData;
+};
